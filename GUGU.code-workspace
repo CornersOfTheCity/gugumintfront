@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../go/src/GUGUMint"
+		},
+		{
+			"path": "../../contracts/BSC/GUGU"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
