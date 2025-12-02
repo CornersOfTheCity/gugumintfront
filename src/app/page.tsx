@@ -133,18 +133,28 @@ export default function Home() {
       return;
     }
 
-    // 先标记为扫描中，让包含 hash-qr-reader 的容器渲染出来
-    setScanning(true);
-
-    // 等待一小段时间，确保 DOM 中已经存在 hash-qr-reader 元素
-    await new Promise((resolve) => setTimeout(resolve, 50));
-
     try {
-      if (!html5QrCodeRef.current) {
-        html5QrCodeRef.current = new Html5Qrcode(qrCodeRegionId);
+      // 启动前先停止并清理之前的实例，避免内部状态异常
+      if (html5QrCodeRef.current) {
+        try {
+          await html5QrCodeRef.current.stop();
+          await html5QrCodeRef.current.clear();
+        } catch {
+          // ignore
+        }
+        html5QrCodeRef.current = null;
       }
 
-      await html5QrCodeRef.current.start(
+      // 先标记为扫描中，让包含 hash-qr-reader 的容器渲染出来
+      setScanning(true);
+
+      // 等待一小段时间，确保 DOM 中已经存在 hash-qr-reader 元素
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      const instance = new Html5Qrcode(qrCodeRegionId);
+      html5QrCodeRef.current = instance;
+
+      await instance.start(
         { facingMode: "environment" },
         { fps: 10, qrbox: 250 },
         (decodedText) => {
@@ -170,6 +180,7 @@ export default function Home() {
       const msg = e?.message || e?.toString?.() || "";
       setScanError(msg || "启动扫码失败，请检查摄像头权限");
       setScanning(false);
+      html5QrCodeRef.current = null;
     }
   };
 
