@@ -431,15 +431,35 @@ export default function Home() {
               {scanError}
             </span>
           )}
-          {scanning && (
-            <div className="mt-3 overflow-hidden rounded-2xl border border-zinc-300 bg-black/90 p-3 shadow-lg shadow-black/40 dark:border-zinc-700">
+        </section>
+
+        {scanning && (
+          <div className="fixed inset-0 z-40 flex items-center justify-center bg-black/60">
+            <div className="w-full max-w-sm rounded-2xl border border-zinc-700 bg-zinc-950/95 p-4 shadow-2xl">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="text-xs font-medium text-zinc-100">
+                  扫码识别哈希
+                </span>
+                <button
+                  type="button"
+                  onClick={stopScan}
+                  className="text-xs text-zinc-400 hover:text-zinc-200"
+                >
+                  关闭
+                </button>
+              </div>
               <div
                 id={qrCodeRegionId}
                 className="h-[50vh] w-full rounded-xl bg-black sm:h-[55vh]"
               />
+              {scanError && (
+                <div className="mt-2 text-[11px] text-red-400">
+                  {scanError}
+                </div>
+              )}
             </div>
-          )}
-        </section>
+          </div>
+        )}
 
         <section className="flex flex-col gap-3">
           <button
