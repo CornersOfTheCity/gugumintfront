@@ -133,12 +133,16 @@ export default function Home() {
       return;
     }
 
+    // 先标记为扫描中，让包含 hash-qr-reader 的容器渲染出来
+    setScanning(true);
+
+    // 等待一小段时间，确保 DOM 中已经存在 hash-qr-reader 元素
+    await new Promise((resolve) => setTimeout(resolve, 50));
+
     try {
       if (!html5QrCodeRef.current) {
         html5QrCodeRef.current = new Html5Qrcode(qrCodeRegionId);
       }
-
-      setScanning(true);
 
       await html5QrCodeRef.current.start(
         { facingMode: "environment" },
