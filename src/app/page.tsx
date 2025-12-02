@@ -352,8 +352,8 @@ export default function Home() {
     : null;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-xl flex-col gap-8 py-16 px-6 bg-white dark:bg-black">
+    <div className="flex min-h-screen items-stretch justify-center bg-zinc-50 font-sans dark:bg-black">
+      <main className="flex min-h-screen w-full max-w-xl flex-col gap-6 px-4 py-6 bg-white dark:bg-black sm:gap-8 sm:px-6 sm:py-10">
         <header className="flex flex-col gap-2">
           <h1 className="text-2xl font-semibold text-black dark:text-zinc-50">
             GUGU Mint
@@ -363,13 +363,13 @@ export default function Home() {
           </p>
         </header>
 
-        <section className="flex flex-col gap-4 rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/40">
-          <div className="flex items-center justify-between gap-4">
+        <section className="flex flex-col gap-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/40">
+          <div className="flex items-center justify-between gap-3">
             <div className="flex flex-col text-sm text-zinc-600 dark:text-zinc-400">
               <span className="text-xs uppercase tracking-wide text-zinc-500">
                 钱包
               </span>
-              <span className="truncate text-sm font-medium text-black dark:text-zinc-50">
+              <span className="truncate text-sm font-medium text-black dark:text-zinc-50 max-w-[11rem] sm:max-w-none">
                 {account ? account : "未连接"}
               </span>
             </div>
@@ -377,7 +377,7 @@ export default function Home() {
               type="button"
               onClick={handleConnectButtonClick}
               disabled={wcConnecting}
-              className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:bg-zinc-600 dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-200"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-black px-4 text-sm font-medium text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:bg-zinc-600 dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-200 sm:h-10 sm:px-5"
             >
               {wcConnecting
                 ? account
@@ -390,7 +390,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="flex flex-col gap-3 rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/40">
+        <section className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-zinc-50 p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/40">
           <label className="text-xs font-medium uppercase tracking-wide text-zinc-500">
             哈希
           </label>
@@ -399,12 +399,12 @@ export default function Home() {
               value={hash}
               onChange={(e) => setHash(e.target.value)}
               placeholder="请输入或粘贴后端分发的哈希"
-              className="flex-1 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-black outline-none ring-0 transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-zinc-500 dark:focus:ring-zinc-800"
+              className="flex-1 rounded-lg border border-zinc-200 bg-white px-3 py-2.5 text-sm text-black outline-none ring-0 transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:focus:border-zinc-500 dark:focus:ring-zinc-800"
             />
             <button
               type="button"
               onClick={scanning ? stopScan : startScan}
-              className="shrink-0 rounded-lg border border-zinc-300 px-3 py-2 text-xs font-medium text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800"
+              className="shrink-0 rounded-lg border border-zinc-300 px-3 py-2.5 text-xs font-medium text-zinc-700 transition hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800"
             >
               {scanning ? "停止" : "扫码"}
             </button>
@@ -418,7 +418,7 @@ export default function Home() {
             <div className="mt-3 overflow-hidden rounded-2xl border border-zinc-300 bg-black/90 p-3 shadow-lg shadow-black/40 dark:border-zinc-700">
               <div
                 id={qrCodeRegionId}
-                className="h-72 w-full rounded-xl bg-black"
+                className="h-64 w-full rounded-xl bg-black sm:h-72"
               />
             </div>
           )}
