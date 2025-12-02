@@ -435,7 +435,7 @@ export default function Home() {
             <div className="mt-3 overflow-hidden rounded-2xl border border-zinc-300 bg-black/90 p-3 shadow-lg shadow-black/40 dark:border-zinc-700">
               <div
                 id={qrCodeRegionId}
-                className="h-64 w-full rounded-xl bg-black sm:h-72"
+                className="h-[50vh] w-full rounded-xl bg-black sm:h-[55vh]"
               />
             </div>
           )}
