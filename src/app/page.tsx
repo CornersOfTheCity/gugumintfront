@@ -205,7 +205,7 @@ export default function Home() {
       }
 
       // 1. 调用后端获取签名
-      const res = await fetch("http://localhost:8080/api/mint", {
+      const res = await fetch("/api/mint", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -269,7 +269,7 @@ export default function Home() {
 
       // 3. 将 txHash 上报给后端，并轮询后端状态
       try {
-        await fetch("http://localhost:8080/api/mint/tx", {
+        await fetch("/api/mint/tx", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -288,7 +288,7 @@ export default function Home() {
       const pollStatus = async () => {
         try {
           const res = await fetch(
-            `http://localhost:8080/api/mint/status?txHash=${currentTxHash}`
+            `/api/mint/status?txHash=${currentTxHash}`
           );
           const statusData = await res.json();
 
