@@ -162,7 +162,9 @@ export default function Home() {
         () => {}
       );
     } catch (e: any) {
-      setScanError(e?.message || "启动扫码失败，请检查摄像头权限");
+      console.error("startScan error", e);
+      const msg = e?.message || e?.toString?.() || "";
+      setScanError(msg || "启动扫码失败，请检查摄像头权限");
       setScanning(false);
     }
   };
